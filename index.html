@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cifrados</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 class="textCursivas">Selecciona el tipo de cifrado</h1>
+
+    <div class="center">
+        <div class="card">
+            <button onclick="redirectToCipher('cesar.html')">Cifrado César</button>
+            <img src="img/cesar.png" alt="Cifrado César" class="cipher-image">
+        </div>
+
+        <div class="card">
+            <button onclick="redirectToCipher('escitala.html')">Cifrado Escítala</button>
+            <img src="/img/escitala.png" alt="Cifrado Escítala" class="cipher-image">
+        </div>
+    </div>
+
+    <script>
+        function redirectToCipher(cipher) {
+            window.location.href = cipher;
+        }
+    </script>
+</body>
+</html>

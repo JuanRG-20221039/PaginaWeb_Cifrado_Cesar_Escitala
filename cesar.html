@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cifrado César</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 class="textCursivas">CIFRADO CÉSAR</h1>
+
+    <div class="cardConcepto cesar">
+        <h2>
+            Cifrado César
+        </h2>
+        <p>
+            El cifrado César es un tipo de cifrado por sustitución donde cada letra del mensaje se desplaza un número fijo de posiciones en el alfabeto. Por ejemplo, si se usa un desplazamiento de 3, la letra A se convierte en D, B en E, y así sucesivamente. Es un método simple y fácil de entender, pero también fácil de romper.
+        </p>
+        <button onclick="redirectToCipher('index.html')">Cambiar de cifrado</button>
+    </div>
+
+    <textarea id="inputText" rows="4" cols="50" placeholder="Ingresa tu mensaje..."></textarea>
+
+    <div>
+        <label for="shift">Desplazamiento: </label>
+        <input type="number" id="shift" value="3" min="1">
+    </div>
+    <div>
+        <button onclick="encrypt()">Cifrar</button>
+        <button onclick="decrypt()">Descifrar</button>
+    </div>
+    
+    <h3>Resultado:</h3>
+    <textarea id="outputText" rows="4" cols="50" readonly></textarea>
+
+    <script>
+        function encrypt() {
+            let text = document.getElementById("inputText").value;
+            let shift = parseInt(document.getElementById("shift").value);
+            let result = caesarCipher(text, shift);
+            document.getElementById("outputText").value = result;
+        }
+
+        function decrypt() {
+            let text = document.getElementById("inputText").value;
+            let shift = parseInt(document.getElementById("shift").value);
+            let result = caesarCipher(text, -shift);
+            document.getElementById("outputText").value = result;
+        }
+
+        function caesarCipher(str, shift) {
+            return str.split('').map(char => {
+                if (char.match(/[a-z]/i)) {
+                    let code = char.charCodeAt(0);
+                    let base = (code >= 65 && code <= 90) ? 65 : 97;
+                    return String.fromCharCode(((code - base + shift) % 26 + 26) % 26 + base);
+                }
+                return char;
+            }).join('');
+        }
+
+        function redirectToCipher(cipher) {
+            window.location.href = cipher;
+        }
+    </script>
+</body>
+</html>
